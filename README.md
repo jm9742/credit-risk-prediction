@@ -1,204 +1,169 @@
-Credit Risk Prediction
+# Credit Risk Prediction
 
 Machine learning project for predicting borrower default risk using borrower demographics, loan characteristics, and engineered financial indicators.
 
-Project Overview
+## Project Overview
 
 This project develops and evaluates machine learning models for credit risk assessment using structured lending data.
 
-The objective is to predict whether a borrower is likely to default on a loan based on financial characteristics, employment history, credit history, and loan information.
+The workflow includes:
 
-The project follows a complete end-to-end data science workflow:
+- Data cleaning and preprocessing
+- Exploratory data analysis
+- Feature engineering
+- Logistic Regression modeling
+- Random Forest modeling
+- Model evaluation
+- Feature importance analysis
 
-* Data cleaning and preprocessing
-* Exploratory data analysis (EDA)
-* Feature engineering
-* Machine learning modeling
-* Model evaluation
-* Feature importance analysis
-
-⸻
-
-Dataset
+## Dataset
 
 The dataset contains borrower-level lending information, including:
 
-* Borrower age
-* Annual income
-* Employment length
-* Loan amount
-* Interest rate
-* Loan grade
-* Home ownership status
-* Loan purpose
-* Credit history length
+- Borrower age
+- Annual income
+- Employment length
+- Loan amount
+- Interest rate
+- Loan grade
+- Home ownership status
+- Loan purpose
+- Credit history length
 
-Target Variable
+Target variable:
 
-loan_status
+- `loan_status`
+  - `0` = Non-default
+  - `1` = Default
 
-* 0 = Non-default
-* 1 = Default
+After cleaning, the dataset contains 31,521 borrower records.
 
-After cleaning:
+## Project Structure
 
-* 31,521 borrower records
-* 24 engineered and transformed features
+- `01_data_cleaning_eda.ipynb`
+- `02_feature_engineering.ipynb`
+- `03_modeling_evaluation.ipynb`
+- `feature_importance.png`
 
-⸻
-
-Project Structure
-
-credit-risk-prediction/
-├── README.md
-├── 01_data_cleaning_eda.ipynb
-├── 02_feature_engineering.ipynb
-├── 03_modeling_evaluation.ipynb
-└── feature_importance.png
-
-⸻
-
-Data Cleaning
+## Data Cleaning
 
 Key preprocessing steps included:
 
-* Removal of unrealistic borrower ages
-* Removal of unrealistic employment lengths
-* Duplicate record removal
-* Missing value treatment
-* Data quality assessment
+- Removing unrealistic borrower ages
+- Removing unrealistic employment lengths
+- Removing duplicated records
+- Treating missing values
+- Assessing data quality issues
 
-⸻
-
-Exploratory Data Analysis
+## Exploratory Data Analysis
 
 Key findings:
 
-* Default rate ≈ 22%
-* Non-default rate ≈ 78%
-* Lower-income borrowers exhibit higher default rates
-* Poorer loan grades show substantially higher default probabilities
-* Higher interest rates are associated with elevated default risk
+- Default rate is approximately 22%.
+- Non-default rate is approximately 78%.
+- Lower-income borrowers show higher default rates.
+- Poorer loan grades show substantially higher default probabilities.
+- Higher interest rates are associated with elevated default risk.
 
-⸻
-
-Feature Engineering
+## Feature Engineering
 
 Several borrower-level risk indicators were created:
 
-Income-to-Loan Ratio
+### Income-to-Loan Ratio
 
 Measures borrower affordability.
 
-Income / Loan Amount
+`person_income / loan_amnt`
 
 Higher values generally indicate stronger repayment capacity.
 
-⸻
-
-Credit History Ratio
+### Credit History Ratio
 
 Measures credit maturity relative to borrower age.
 
-Credit History Length / Age
+`cb_person_cred_hist_length / person_age`
 
-⸻
-
-Employment Stability
+### Employment Stability
 
 Measures employment experience relative to borrower age.
 
-Employment Length / Age
+`person_emp_length / person_age`
 
-⸻
-
-Interest Burden
+### Interest Burden
 
 Measures repayment burden relative to borrower income.
 
-Interest Rate / Income
+`loan_int_rate / person_income`
 
-⸻
+## Models
 
-Models
-
-Logistic Regression
+### Logistic Regression
 
 Used as a baseline classification model.
 
 Results:
 
-* Accuracy: 80.8%
-* Recall (Default Borrowers): 17%
+- Accuracy: 80.8%
+- Recall for default borrowers: 17%
 
 Although overall accuracy was reasonable, the model struggled to identify default borrowers.
 
-⸻
-
-Random Forest
+### Random Forest
 
 Used to capture non-linear borrower risk patterns.
 
 Results:
 
-* Accuracy: 87.4%
-* Recall (Default Borrowers): 62%
+- Accuracy: 87.4%
+- Recall for default borrowers: 62%
 
 The Random Forest model significantly outperformed Logistic Regression in identifying high-risk borrowers.
 
-⸻
+## Model Comparison
 
-Model Comparison
+| Model | Accuracy | Recall for Default Borrowers |
+|---|---:|---:|
+| Logistic Regression | 80.8% | 17% |
+| Random Forest | 87.4% | 62% |
 
-Model	Accuracy	Recall (Default Borrowers)
-Logistic Regression	80.8%	17%
-Random Forest	87.4%	62%
+## Feature Importance
 
-⸻
-
-Feature Importance
+![Feature Importance](feature_importance.png)
 
 The most important predictive features were:
 
-1. Income-to-Loan Ratio
-2. Loan Percent Income
-3. Loan Grade
-4. Interest Burden
-5. Loan Interest Rate
+1. Income-to-loan ratio
+2. Loan percent income
+3. Loan grade
+4. Interest burden
+5. Loan interest rate
 
 These results suggest that borrower repayment capacity is one of the strongest drivers of default risk.
 
-⸻
+## Key Findings
 
-Key Findings
+- Random Forest substantially outperformed Logistic Regression.
+- Borrower affordability metrics were the strongest predictors of default.
+- Loan burden relative to income plays a critical role in repayment performance.
+- Feature engineering improved model interpretability and predictive power.
 
-* Random Forest substantially outperformed Logistic Regression.
-* Borrower affordability metrics were the strongest predictors of default.
-* Loan burden relative to income plays a critical role in repayment performance.
-* Feature engineering significantly improved model interpretability and predictive power.
+## Technologies
 
-⸻
+- Python
+- Pandas
+- NumPy
+- Matplotlib
+- Seaborn
+- Scikit-Learn
+- Jupyter Notebook
 
-Technologies
-
-* Python
-* Pandas
-* NumPy
-* Matplotlib
-* Seaborn
-* Scikit-Learn
-* Jupyter Notebook
-
-⸻
-
-Future Improvements
+## Future Improvements
 
 Potential future enhancements include:
 
-* XGBoost and Gradient Boosting models
-* Hyperparameter optimization
-* Cross-validation
-* Probability calibration
-* SHAP explainability analysis
-* Production deployment pipeline
-* Real-world lending datasets
+- XGBoost or Gradient Boosting models
+- Hyperparameter optimization
+- Cross-validation
+- Probability calibration
+- SHAP explainability analysis
+- Production deployment pipeline
