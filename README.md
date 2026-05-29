@@ -4,7 +4,8 @@ Machine learning project for predicting borrower default risk using borrower dem
 
 ## Project Overview
 
-This project develops and evaluates machine learning models for credit risk assessment using structured lending data.
+This project develops and evaluates machine learning models for credit risk assessment using structured lending data. 
+Credit default prediction is a core component of consumer lending risk management. Accurate identification of high-risk borrowers directly impacts loan loss reserves, portfolio risk exposure, and regulatory capital requirements. This project simulates a risk analyst workflow applicable to retail banking, fintech lending platforms, and credit risk model validation.
 
 The workflow includes:
 
