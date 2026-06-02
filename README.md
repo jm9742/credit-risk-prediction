@@ -1,6 +1,6 @@
 ## Credit Risk Prediction
 
-Predicting borrower default risk using machine learning, feature engineering, and model explainability techniques.
+Credit default prediction is a core component of consumer lending risk management. Accurate identification of high-risk borrowers directly impacts loan loss reserves, portfolio risk exposure, and regulatory capital requirements. This project simulates a risk analyst workflow applicable to retail banking, credit risk model validation, and financial institution risk management.
 
 ⸻
 
