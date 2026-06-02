@@ -1,154 +1,145 @@
-Credit Risk Prediction
+## Credit Risk Prediction
 
-A machine learning project for predicting borrower default risk using demographic, financial, and credit-related information.
+Predicting borrower default risk using machine learning, feature engineering, and model explainability techniques.
 
-Project Overview
+⸻
 
-This project develops and evaluates machine learning models for credit risk assessment using structured lending data.
+## Project Objective
 
-The workflow includes:
+The objective of this project is to predict whether a borrower will default on a loan using demographic, financial, and credit-related information.
 
-* Data Cleaning
-* Exploratory Data Analysis (EDA)
-* Feature Engineering
-* Logistic Regression
-* Random Forest
-* Cross Validation
-* Permutation Importance
-* SHAP Explainability
-* Model Comparison Dashboard
+This project demonstrates a complete end-to-end machine learning workflow commonly used in financial risk analytics.
 
-Dataset
+⸻
 
-The dataset contains borrower-level lending information including:
+## Workflow
 
-* Age
-* Income
-* Employment Length
-* Loan Amount
-* Interest Rate
-* Loan Grade
-* Credit History
+- Data Cleaning
 
-Target Variable
+- Exploratory Data Analysis (EDA)
 
-loan_status
+- Feature Engineering
 
-* 0 = Non-default
-* 1 = Default
+- Logistic Regression
 
-After cleaning, the dataset contains 31,521 borrower records.
+- Random Forest
 
-Project Structure
+- Cross Validation
 
-01_data_cleaning_eda.ipynb
+- Permutation Importance
+
+- SHAP Explainability
+
+- Model Comparison Dashboard
+
+⸻
+
+## Project Structure
+
+01 — Data Cleaning & EDA
 
 * Data cleaning
 * Missing value analysis
-* Outlier detection
-* Exploratory data analysis
+* Outlier treatment
+* Target distribution analysis
 * Correlation analysis
 
-02_feature_engineering.ipynb
+02 — Feature Engineering
 
+* Missing value treatment
 * Categorical encoding
-* Feature engineering
-* Engineered feature evaluation
-* Correlation heatmap
+* Engineered financial indicators
+* Correlation evaluation
 
-03_modeling_evaluation.ipynb
+03 — Model Development
 
 * Train-test split
 * Logistic Regression
 * Random Forest
 * Model evaluation
-* Feature importance analysis
 
-04_shap_explainability.ipynb
+04 — Model Explainability
 
-* Cross validation
-* Permutation importance
-* SHAP explainability
-* Model interpretation
+* Cross Validation
+* Permutation Importance
+* SHAP Analysis
+* Feature Interpretation
 
-05_model_comparison_dashboard.ipynb
+05 — Model Comparison Dashboard
 
-* Model comparison
 * Accuracy comparison
 * Recall comparison
 * Precision comparison
 * F1-score comparison
 
-Feature Engineering
+⸻
 
-Several financial risk indicators were created:
+## Feature Engineering
 
-Income-to-Loan Ratio
+The following engineered features were created:
 
-Measures borrower affordability.
+Feature	Description
+Income-to-Loan Ratio	Measures borrower affordability
+Credit History Ratio	Measures credit maturity relative to age
+Employment Stability	Measures employment consistency
+Interest Burden	Measures repayment burden relative to income
 
-Income / Loan Amount
+⸻
 
-Credit History Ratio
-
-Measures credit maturity relative to borrower age.
-
-Credit History Length / Age
-
-Employment Stability
-
-Measures employment experience relative to borrower age.
-
-Employment Length / Age
-
-Interest Burden
-
-Measures repayment burden relative to borrower income.
-
-Interest Rate / Income
-
-Model Performance
+## Model Performance
 
 Model	Accuracy	Recall	Precision	F1 Score
 Logistic Regression	0.81	0.17	0.70	0.28
 Random Forest	0.87	0.62	0.75	0.68
 
-Cross Validation
+⸻
 
-Random Forest achieved a mean cross-validation accuracy of approximately 85.2% with low variance across folds, indicating stable model performance.
+## Cross Validation
 
-Permutation Importance Findings
+Random Forest achieved:
 
-Permutation importance confirmed that engineered financial features contributed significantly to model performance.
+* Mean Accuracy: 85.2%
+* Standard Deviation: 1.2%
 
-The most important features included:
+This indicates stable performance across multiple data splits.
 
-1. Income-to-Loan Ratio
-2. Loan Grade
-3. Borrower Income
-4. Loan Percent Income
-5. Employment Length
+⸻
 
-SHAP Findings
+## Most Important Features
 
-SHAP analysis confirmed that the most influential drivers of borrower default risk were:
+According to Permutation Importance and SHAP Analysis:
 
 1. Loan Grade
 2. Income-to-Loan Ratio
 3. Interest Burden
 4. Loan Percent Income
+5. Borrower Income
 
-The results validated the effectiveness of the feature engineering process and provided interpretable explanations for model predictions.
+⸻
 
-Key Findings
+## SHAP Explainability
 
-* Random Forest significantly outperformed Logistic Regression.
-* Borrower affordability is one of the strongest predictors of default risk.
-* Feature engineering improved predictive performance.
-* Cross validation demonstrated stable model performance.
-* SHAP analysis provided interpretable explanations for model behavior.
+SHAP analysis was used to explain how individual features influence default predictions.
 
-Technologies Used
+Key findings:
+
+* Higher loan grades (riskier borrowers) increase default probability.
+* Higher income-to-loan ratios reduce default probability.
+* Larger loan burdens increase default probability.
+* Engineered features significantly improved model performance.
+
+⸻
+
+## Key Results
+
+* Random Forest outperformed Logistic Regression across all major metrics.
+* Feature engineering substantially improved predictive power.
+* Cross validation confirmed model stability.
+* SHAP provided interpretable explanations for model behavior.
+
+⸻
+
+## Technologies Used
 
 * Python
 * Pandas
@@ -159,16 +150,12 @@ Technologies Used
 * SHAP
 * Jupyter Notebook
 
-Future Improvements
+⸻
 
-Potential future enhancements include:
+## Future Improvements
 
-* XGBoost implementation
-* Hyperparameter tuning
-* ROC-AUC analysis
-* Precision-Recall optimization
-* Streamlit dashboard deployment
-* Real-time credit risk scoring
-* Alternative explainability methods
-* Model monitoring and drift detection
-
+* XGBoost
+* Hyperparameter Tuning
+* ROC-AUC Optimization
+* Streamlit Deployment
+* Real-Time Credit Risk Dashboar
