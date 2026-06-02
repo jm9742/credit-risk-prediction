@@ -1,170 +1,174 @@
-# Credit Risk Prediction
+Credit Risk Prediction
 
-Machine learning project for predicting borrower default risk using borrower demographics, loan characteristics, and engineered financial indicators.
+A machine learning project for predicting borrower default risk using demographic, financial, and credit-related information.
 
-## Project Overview
+Project Overview
 
-This project develops and evaluates machine learning models for credit risk assessment using structured lending data. 
-Credit default prediction is a core component of consumer lending risk management. Accurate identification of high-risk borrowers directly impacts loan loss reserves, portfolio risk exposure, and regulatory capital requirements. This project simulates a risk analyst workflow applicable to retail banking, fintech lending platforms, and credit risk model validation.
+This project develops and evaluates machine learning models for credit risk assessment using structured lending data.
 
 The workflow includes:
 
-- Data cleaning and preprocessing
-- Exploratory data analysis
-- Feature engineering
-- Logistic Regression modeling
-- Random Forest modeling
-- Model evaluation
-- Feature importance analysis
+* Data Cleaning
+* Exploratory Data Analysis (EDA)
+* Feature Engineering
+* Logistic Regression
+* Random Forest
+* Cross Validation
+* Permutation Importance
+* SHAP Explainability
+* Model Comparison Dashboard
 
-## Dataset
+Dataset
 
-The dataset contains borrower-level lending information, including:
+The dataset contains borrower-level lending information including:
 
-- Borrower age
-- Annual income
-- Employment length
-- Loan amount
-- Interest rate
-- Loan grade
-- Home ownership status
-- Loan purpose
-- Credit history length
+* Age
+* Income
+* Employment Length
+* Loan Amount
+* Interest Rate
+* Loan Grade
+* Credit History
 
-Target variable:
+Target Variable
 
-- `loan_status`
-  - `0` = Non-default
-  - `1` = Default
+loan_status
+
+* 0 = Non-default
+* 1 = Default
 
 After cleaning, the dataset contains 31,521 borrower records.
 
-## Project Structure
+Project Structure
 
-- `01_data_cleaning_eda.ipynb`
-- `02_feature_engineering.ipynb`
-- `03_modeling_evaluation.ipynb`
-- `feature_importance.png`
+01_data_cleaning_eda.ipynb
 
-## Data Cleaning
+* Data cleaning
+* Missing value analysis
+* Outlier detection
+* Exploratory data analysis
+* Correlation analysis
 
-Key preprocessing steps included:
+02_feature_engineering.ipynb
 
-- Removing unrealistic borrower ages
-- Removing unrealistic employment lengths
-- Removing duplicated records
-- Treating missing values
-- Assessing data quality issues
+* Categorical encoding
+* Feature engineering
+* Engineered feature evaluation
+* Correlation heatmap
 
-## Exploratory Data Analysis
+03_modeling_evaluation.ipynb
 
-Key findings:
+* Train-test split
+* Logistic Regression
+* Random Forest
+* Model evaluation
+* Feature importance analysis
 
-- Default rate is approximately 22%.
-- Non-default rate is approximately 78%.
-- Lower-income borrowers show higher default rates.
-- Poorer loan grades show substantially higher default probabilities.
-- Higher interest rates are associated with elevated default risk.
+04_shap_explainability.ipynb
 
-## Feature Engineering
+* Cross validation
+* Permutation importance
+* SHAP explainability
+* Model interpretation
 
-Several borrower-level risk indicators were created:
+05_model_comparison_dashboard.ipynb
 
-### Income-to-Loan Ratio
+* Model comparison
+* Accuracy comparison
+* Recall comparison
+* Precision comparison
+* F1-score comparison
+
+Feature Engineering
+
+Several financial risk indicators were created:
+
+Income-to-Loan Ratio
 
 Measures borrower affordability.
 
-`person_income / loan_amnt`
+Income / Loan Amount
 
-Higher values generally indicate stronger repayment capacity.
-
-### Credit History Ratio
+Credit History Ratio
 
 Measures credit maturity relative to borrower age.
 
-`cb_person_cred_hist_length / person_age`
+Credit History Length / Age
 
-### Employment Stability
+Employment Stability
 
 Measures employment experience relative to borrower age.
 
-`person_emp_length / person_age`
+Employment Length / Age
 
-### Interest Burden
+Interest Burden
 
 Measures repayment burden relative to borrower income.
 
-`loan_int_rate / person_income`
+Interest Rate / Income
 
-## Models
+Model Performance
 
-### Logistic Regression
+Model	Accuracy	Recall	Precision	F1 Score
+Logistic Regression	0.81	0.17	0.70	0.28
+Random Forest	0.87	0.62	0.75	0.68
 
-Used as a baseline classification model.
+Cross Validation
 
-Results:
+Random Forest achieved a mean cross-validation accuracy of approximately 85.2% with low variance across folds, indicating stable model performance.
 
-- Accuracy: 80.8%
-- Recall for default borrowers: 17%
+Permutation Importance Findings
 
-Although overall accuracy was reasonable, the model struggled to identify default borrowers.
+Permutation importance confirmed that engineered financial features contributed significantly to model performance.
 
-### Random Forest
+The most important features included:
 
-Used to capture non-linear borrower risk patterns.
+1. Income-to-Loan Ratio
+2. Loan Grade
+3. Borrower Income
+4. Loan Percent Income
+5. Employment Length
 
-Results:
+SHAP Findings
 
-- Accuracy: 87.4%
-- Recall for default borrowers: 62%
+SHAP analysis confirmed that the most influential drivers of borrower default risk were:
 
-The Random Forest model significantly outperformed Logistic Regression in identifying high-risk borrowers.
+1. Loan Grade
+2. Income-to-Loan Ratio
+3. Interest Burden
+4. Loan Percent Income
 
-## Model Comparison
+The results validated the effectiveness of the feature engineering process and provided interpretable explanations for model predictions.
 
-| Model | Accuracy | Recall for Default Borrowers |
-|---|---:|---:|
-| Logistic Regression | 80.8% | 17% |
-| Random Forest | 87.4% | 62% |
+Key Findings
 
-## Feature Importance
+* Random Forest significantly outperformed Logistic Regression.
+* Borrower affordability is one of the strongest predictors of default risk.
+* Feature engineering improved predictive performance.
+* Cross validation demonstrated stable model performance.
+* SHAP analysis provided interpretable explanations for model behavior.
 
-![Feature Importance](feature_importance.png)
+Technologies Used
 
-The most important predictive features were:
+* Python
+* Pandas
+* NumPy
+* Matplotlib
+* Seaborn
+* Scikit-Learn
+* SHAP
+* Jupyter Notebook
 
-1. Income-to-loan ratio
-2. Loan percent income
-3. Loan grade
-4. Interest burden
-5. Loan interest rate
-
-These results suggest that borrower repayment capacity is one of the strongest drivers of default risk.
-
-## Key Findings
-
-- Random Forest substantially outperformed Logistic Regression.
-- Borrower affordability metrics were the strongest predictors of default.
-- Loan burden relative to income plays a critical role in repayment performance.
-- Feature engineering improved model interpretability and predictive power.
-
-## Technologies
-
-- Python
-- Pandas
-- NumPy
-- Matplotlib
-- Seaborn
-- Scikit-Learn
-- Jupyter Notebook
-
-## Future Improvements
+Future Improvements
 
 Potential future enhancements include:
 
-- XGBoost or Gradient Boosting models
-- Hyperparameter optimization
-- Cross-validation
-- Probability calibration
-- SHAP explainability analysis
-- Production deployment pipeline
+* XGBoost implementation
+* Hyperparameter tuning
+* ROC-AUC analysis
+* Precision-Recall optimization
+* Streamlit dashboard deployment
+* Real-time credit risk scoring
+* Alternative explainability methods
+* Model monitoring and drift detection
+
